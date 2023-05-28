@@ -146,6 +146,7 @@ label {
 
 .note-title:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .close-note {
