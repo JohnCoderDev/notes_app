@@ -10,6 +10,8 @@ const App = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
+  const [isEditing, setEditing] = useState(false);
+  const [idNote, setIdNote] = useState(0);
 
   const createNote = async (event) => {
     event.preventDefault();
@@ -37,6 +39,7 @@ const App = () => {
     setTitle("");
     setContent("");
     setModalVisible(false);
+    setEditing(false);
     getAllPosts();
   };
 
@@ -61,7 +64,47 @@ const App = () => {
     getAllPosts();
   };
 
+  const editNote = ({ id, title, content }) => {
+    setEditing(true);
+    setModalVisible(true);
+    setTitle(title);
+    setContent(content);
+    setIdNote(id);
+  };
 
+  const saveChanges = async (event) => {
+    event.preventDefault();
+    const request = new Request(`${baseURL}/posts/${idNote}/`, {
+      body: JSON.stringify({
+        title,
+        content,
+      }),
+      headers: {
+        "Content-Type": "Application/JSON",
+      },
+      method: "PATCH",
+    });
+
+    const response = await fetch(request);
+    const data = response.json();
+
+    if (response.ok) {
+      console.log(data);
+    } else {
+      console.log("failed network request");
+    }
+    resetModal();
+    getAllPosts();
+  };
+
+  const resetModal = () => {
+    setEditing(false);
+    setModalVisible(false);
+    setTitle("");
+    setContent("");
+    setIdNote(0);
+  };
+  
   return (
     <div>
       <div className="header">
@@ -82,6 +125,7 @@ const App = () => {
               title={item.title}
               content={item.content}
               onclick={() => deleteItem(item.id)}
+              onedit={() => editNote(item)}
               key={item.id}
             />
           ))}
@@ -95,14 +139,12 @@ const App = () => {
         <div className="form">
           <div className="form-header">
             <div>
-              <p className="form-header-text">Add new note</p>
+              <p className="form-header-text">
+                {isEditing ? "Save changes" : "Add new note"}
+              </p>
             </div>
             <div>
-              <a
-                href="#"
-                className="close-btn"
-                onClick={() => setModalVisible(false)}
-              >
+              <a href="#" className="close-btn" onClick={() => resetModal()}>
                 x
               </a>
             </div>
@@ -139,7 +181,7 @@ const App = () => {
                 type="submit"
                 value="save"
                 className="btn-save"
-                onClick={createNote}
+                onClick={isEditing ? saveChanges : createNote}
               />
             </div>
           </form>

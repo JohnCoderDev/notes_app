@@ -144,6 +144,10 @@ label {
   color: rgb(7,43,80);
 }
 
+.note-title:hover {
+  text-decoration: underline;
+}
+
 .close-note {
   text-decoration: none;
   color: rgb(7,43,80);
