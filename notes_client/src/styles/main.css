@@ -1,0 +1,171 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: rgb(7,43,80);
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.title {
+  font-size: 30px;
+  color: whitesmoke;
+  padding: 15px;
+}
+
+.add-btn {
+  padding: 15px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(7,43,80);
+}
+
+.add-section {
+  margin-top: 20px;
+}
+
+.posts {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-text {
+  font-size: 40px;
+  color: whitesmoke;
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.329);
+}
+
+.modal-not-visible {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.329);
+  display: none;
+}
+
+.form {
+  background-color: whitesmoke;
+  width: 50%;
+  margin: auto;
+  height: 50%;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+
+.form-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-header-text {
+  font-size: 30px;
+}
+
+.close-btn {
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(7,43,80);
+  margin-top: 20px;
+}
+
+.close-btn:hover {
+  text-decoration: underline;
+  color: brown;
+}
+
+label {
+  font-size: 20px;
+}
+
+.form-group {
+  padding: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 15px;
+}
+
+.btn-save {
+  padding: 20px;
+  background-color: rgb(7,43,80);
+  color: whitesmoke;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+}
+
+.note-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.note {
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 10px;
+  transition: all 1.2s;
+  min-width: 25%;
+  min-height: 25%;
+  margin: 15px;
+  overflow: hidden;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-title {
+  font-size: 20px;
+  color: rgb(7,43,80);
+}
+
+.close-note {
+  text-decoration: none;
+  color: rgb(7,43,80);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.close-note:hover {
+  color: brown;
+  text-decoration: underline;
+}
+
+.note:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .form {
+    width: 80%;
+  }
+
+  .note {
+    width: 80%;
+  }
+}
